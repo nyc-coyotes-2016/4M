@@ -1,1 +1,24 @@
-<h2>new question page</h2>
+<div class="container">
+  <h1>Welcome to User creator!</h1>
+
+   <form method="post" action="/questions">
+    <label for="user_name_input">name:</label>
+
+    <input id="user_name_input" name="user[first_name]" type="text" value="<%= @User.try(:first_name) %>">
+    <br>
+    <label for="user_name_input">last name:</label>
+    <input id="user_name_input" name="user[last_name]" type="text" value="<%= @User.try(:last_name) %>">
+    <br>
+
+    <label for="user_email_input">email:</label>
+    <input id="user_email_input" name="user[email]" type="text" value="<%= @User.try(:email) %>">
+    <br>
+    <label for="user_new_pass">password:</label>
+    <input id="user_new_pass" name="user[password]" type="text" value="<%= @User.try(:password) %>">
+    <br>
+
+    <input type="submit" value="Yo! my account!" class="button">
+  </form>
+  <br>
+<a href="/">Back to homepage</a>
+</div>
