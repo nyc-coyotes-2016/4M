@@ -1,23 +1,29 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1><a href="/">four-m overflow</a></h1>
+  <a id="question-button" href="/questions/new">Ask Question</a>
+</header>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+
+<div class='question-container'>
+<h2>Questions</h2>
+
+<div id="question-list">
+  <% @questions.each do |question| %>
+
+      <div class="question-title"><a href="/questions/<%= question.id%>"><%= question.title %></a>
+        <div class="votes">
+          <span class="vote-count"><%= question.votes.count %></span>
+          <div class="vote-count-subtitle">votes</div>
+        </div>
+        <div class="answers">
+          <span class="answer-count"><%= question.answers.count %></span>
+          <div class="answer-count-subtitle">answers</div>
+        </div>
+        </div>
+      </div>
+
+  <% end %>
+</div>
+</div>
+
 </div>
