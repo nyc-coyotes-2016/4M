@@ -1,202 +1,85 @@
-# Craigslist Jr
-
-## Learning Competencies
-
-* Build a wireframe to model application views
-* Use Active Record Associations
-* Implement all four parts of [CRUD][]: create, read, update, and delete.
-* Use the MVC pattern in web applications with proper allocation of code and responsibilities to each layer
+# DBC Sinatra Overflow
 
 ## Summary
 
-We're going to build a simple version of Craigslist.  This will be your first
-web application that uses multiple models.
+We're going to build a substantial Sinatra application from the ground up: a [StackOverflow](http://stackoverflow.com) clone.  The goal of this challenge is to build a well-structured Sinatra application with a good mixture of front-end and back-end features.  Focus on defining clear routes, creating clean templates, and enhancing your application with AJAX.  Before we jump in, peruse StackOverflow to understand its core features.
 
-Keep in mind that this is not substantially different than a command-line
-version.  Instead of reading in command-line arguments, we read in URL
-parameters.  Instead of printing to the console, we print HTML and CSS.
+### Objectives
+The requirements for the application are listed below.  They are deliberately ambiguous.  This gives us both flexibility in our implementation and because clarifying ambiguous requirements is at least 30% of an engineer's job.  At. Least.
 
-We'll only have two models in a one-to-many relationship; no different than
-your command-line TODO app.
+- Users can post questions.  Other users can answer them.
+- Users can comment on both questions and answers.  Like StackOverflow, the comments should just be displayed in a flat list.
+- The user who posted a question can declare one of the user-submitted answers to be the best answer.
+- Users can upvote and downvote questions, answers, and comments—only one vote per user for each question, answer, and comment.
+- Users cannot add a question, answer, or comment or vote unless they're logged in, but they can view all of the above when logged out.
+- *Stretch:*  Sort answers with the answer selected as the best answer first, followed by the most highly voted.  Sort comments chronologically with oldest first.
+- *Stretch:*  Users can see questions sorted three ways: highest-voted, most recent, and "trending".
 
-The challenge repo includes a Sinatra skeleton as usual.
 
 ## Releases
+### Release 0:  Strategy and Team Norms
+Before diving too deeply into the code, our team should be clear on three things:
 
-### Release 0: Wireframe With Your Pair
-
-Never heard of a web wireframe? Check out [what Wikipedia has to
-say][wireframe]. **TL;DR** -- figure out what *pages* your app needs, then
-sketch-out the basic *layout* of each and the *connections* between them.
-
-The application will have two core models: `Article` and `Category`.  An `Article`
-belongs to a `Category` and a `Category` has many `Articles`.
-
-A `Category` is something like "Apartment Rentals" or "Auto Parts."
-
-Sit down and work out with your pair what pages you're going to be building.
-At a minimum, you'll need:
-
-1. A page that lists all the categories
-2. A page that lists all the articles in a given category
-3. A page that lets someone create a new article in a given category
-4. A page that lets someone who has created a page return to edit/update the page
-
-If you're never used Craigslist, it doesn't have any kind of user
-authentication.  Instead, when someone creates an article they're given a special
-"secret" URL that grants them powers to edit that article that looks like
-
-```text
-http://craigslist.com/articles/123/edit?key=kjansd812
-```
-
-The key is randomly generated.  The person is given their "edit URL" after they
-successfully create a article.  Anyone with this URL can edit the article.
-
-Think about this like a real web application you might want someone to use.
-What fields should an `Article` have?
-
-A price, probably.  What should the column type of a money-related column be?
-
-An email, so the author of the article could be contacted.  Title, description, etc.
-
-Spend time enumerating the pages, deciding what should be displayed on each
-one.
-
-### Release 1: Implement Controller Structure
-
-Our controller structure will be more complicated.  We'll want URLs that look
-like `/categories/123` and `/articles/456`.  We'll be using both `get` and `post`
-methods.
-
-To create a new `Article`, for example, we'd want to submit an HTML form using the
-POST http method to the `/articles` URL, like so:
-
-```html
-<form action="/articles" method="post">
-  <!-- other form elements here -->
-</form>
-```
-
-and to update an existing record (say with id `1234`) we'd want to post to
-`/articles/1234`.
-
-Controllers should either redirect to another URL or render a page.  Typically,
-a page loaded via HTTP POST will redirect to an appropriate URL if a request
-succeeds and render an error page, otherwise.
-
-#### Organization
-
-Keeping your code organized is an important part of any software project. Most
-important is following a convention, this way a new member of your team won't
-spend days trying to get their bearings.
-
-Developers might disagree on _which_ convention to follow, but they'll all
-agree any convention is better than none.
-
-In this app you'll have both `Article` and `Category` models. The ActiveRecord
-convention is for those to be described in different files:
-
-```text
-app
-| - models
-  | - article.rb
-  | - category.rb
-```
-
-Why not do the same for your controllers? You could have one controller per
-model! Each controller would handle all the requests (CRUD) for each that
-model. E.g.:
+1. Set expectations for the project.
+2. Decide on our MVP.
+3. Break the MVP down into user stories and deliverable features.
 
 
-```text
-app
-| - controllers
-  | - article.rb
-  | - category.rb
-  | - index.rb
-```
+Once we've broken the application down into user stories/features, we should set up an electronic tracking application to track our progress in building out each of them.  [Trello][] and [Pivotal Tracker][] are examples of electronic tracking applications.
 
-You might keep `index.rb` around for requests that aren't for a `Category` or
-`Article`. Your `/` landing page would be a good fit for `index.rb`
+*Optionally*,  we can integrate a chat application into our workflow (e.g., [Slack][] or [HipChat][]).  Many teams find it helpful to create a chat environment—especially those that work remotely.  Combine a chat environment with hygienic git behavior, GitHub, and continuous integration and developers can work as well separated by miles as while standing in the same room together.
 
-The same organizational technique can be applied to your erb views. Instead of
-filling up your `app/views` directory with a half dozen erb templates:
 
-```text
-app
-| - views
-  | - category_index.erb
-  | - category_show.erb
-  | - edit_article.erb
-  | - new_article.erb
-  | - article_show.erb
-  | - articles_index.erb
-```
+### Release 1:  The First Commit
+Our team needs to create a new repository inside of our cohort's GitHub organization.  Before we do anything else, our first commit should be a `README.md` containing:
 
-Why not create an `articles` and a `categories` sub-directory?
+ * The name of our team.
+ * The names of the team members.
+ * The user stories that define our MVP.
 
-```text
-app
-| - views
-  | - articles
-    | - edit.erb
-    | - new.erb
-    | - show.erb
-    | - index.erb
-  | - categories
-    | - index.erb
-    | - show.erb
-```
 
-Now with the sub-directories `articles` and `categories` our erb template names
-follow a convention. Neat! One tip, you'll need to use some (ahem) interesting
-syntax to render a template inside a sub-directory. Here's an example:
+### Release 2:  Build the StackOverflow Clone
+Unlike most other challenges, developing this application is not broken down into smaller releases.  Fortunately, we have already done the work of breaking the application down into user stories and features.  Now, we need to implement them.
 
-```ruby
-get "/articles" do
-  @articles = Article.all
+The following subsections will provide some additional guidance for us.
 
-  erb :"articles/index"
-end
-```
+***Git Workflow***  
+We should follow a good git workflow.  We should always work on branches and commit often.  Team members should not merge their own pull requests.  Each pull request should be reviewed by at least one other member of the team before being merged.
 
-### Ship it!
+- [Git Workflow for Teams](https://gist.github.com/mikelikesbikes/ccbf4c7fd90e647138c6)
+- [Git: Rebase vs Merge](https://www.atlassian.com/git/tutorials/merging-vs-rebasing/)
+- [Git Resources](http://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
 
-Make sure the core features work.  We should be able to download your app, run
-it, and do the following:
 
-1. Choose a category to browse
-2. View all articles in a particular category
-3. View a particular article
-4. Create my own article
-5. Edit my articles by using the "secret key" that I get after creating my articles
+***Polymorphic Associations***  
+Where do we store data for votes?  Questions, answers, and comments can all be voted on.  So, we could have three separate vote-related models and tables.  For example, a `QuestionVote` model with a `question_votes` table.  This would result in three very similar tables all holding data on votes.
 
-When we say "download your app" we mean "check it out from source, run the
-migrations, and start up the server."  Imagine you're showing this great idea
-off to your boss or a colleage who will help you if they can get it up and
-running.  How might you make sure that *they* are effective with only a basic
-knowledge of the DBCstarter kit?  A good developer makes it easy to get up and
-running because not wasting others' time is a virtue.
+Or, we could write polymorphic associations, in which case we would consider our question, answer, and comment models each as a *votable*, something on which votes are cast.  This would allow us to have just one `Vote` model with one `votes` table.  To make this work, the `votes` table would need to contain a column that indicates for what type of model the vote was made.  Was it for a question, answer, or comment?  Consult the [RailsGuides][polymorphic associations] and the [Rich on Rails][rorpa] blog for further details.
 
-### Release 3: Add One Final Feature
+Likewise, a comment can be made on either an answer or a question.  This offers another opportunity to use polymorphic associations.
 
-One last feature to add: the "this is awesome" feature.  What does awesome
-mean?  It can mean anything.  The code is awesome, there are new awesome
-features, the design is awesome.
+The decision to make use of polymorphic associations is up to our group.  We are not required to dive into this new concept right now.  It is 100% possible to simply have `answer_votes`, `question_votes`, and `comment_votes` tables to store the different types of votes and `answer_comments` and `question_comments` tables to store the different types of comments.
 
-This isn't a race; there's no finish line, only a deadline (tomorrow, duh!).
-Take the time to make this application something you're proud of.  It doesn't
-have to be flashy &mdash; it could be a difficult technical hurdle you
-overcame.
 
-Bring 100% of your best self to this feature.  Make something meaningful; make
-something great.
+***AJAX***  
+We need to practice our new AJAX skills, and our application should have multiple AJAX calls to enhance the user experience.  Our team should decide which specific pieces of functionality we want to AJAX.
 
-## Resources
+A good place to start is AJAXing the voting functionality.  Instead of refreshing the page when a user upvotes or downvotes, we just want to make an AJAX call to our server to send that info and update the vote count on our page.
 
-* Create, Read, Update, Delete ([CRUD][])
-* [Wikipedia: Wireframe][wireframe]
 
-[CRUD]: http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
-[wireframe]: http://en.wikipedia.org/wiki/Website_wireframe
+### Release 3:  Demos
+We will be demonstrating our MVP to the rest of our cohort.  We'll be expected to run through the essential features of our application.
+
+
+## Conclusion
+This multi-day challenge is a good taste of how final projects operate.  In addition to reflecting on how we performed with regard to the technical aspects of the challenge, how was it to work on a group project of this scale?  What went well?  Where are there opportunities to grow?
+
+
+[cls]: http://en.wikipedia.org/wiki/Command-line_interface
+[HipChat]: https://www.hipchat.com/
+[mock schema design]: readme-assets/three-vote-tables.png
+[Pivotal Tracker]: http://www.pivotaltracker.com/
+[Polymorphic associations]: http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+[rorpa]: http://richonrails.com/articles/polymorphic-associations-in-rails
+[Slack]: https://slack.com/
+[Trello]: https://trello.com/
