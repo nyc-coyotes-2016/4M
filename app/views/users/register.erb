@@ -1,0 +1,19 @@
+<div class="container" id="register">
+  <h2>Create User Account</h2>
+
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li> <%= error %> </li>
+    <% end %>
+  </ul>
+  <% end%>
+
+  <form action="/users" method="POST" >
+    <input id="username" name="user[username]" type="text" placeholder="Username"><br><br>
+    <input id="email" name="user[email]" type="text" placeholder="Email"><br><br>
+    <input id="password" name="user[password]" type="password" placeholder="Password"><br><br>
+    <input id="password" name="user[password_confirmation]" type="password" placeholder="Confirm Password"><br><br>
+    <input type="submit" value="Register" class="button">
+  </form>
+</div>
