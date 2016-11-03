@@ -10,7 +10,8 @@ post '/users' do
     redirect '/'
   else
     @errors = @user.errors.full_messages
-    redirect '/users/register'
+    p @errors
+    erb :'/users/register'
   end
 end
 
