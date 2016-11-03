@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -18,6 +18,25 @@
   <title></title>
 </head>
 <body>
+  <nav class="clearfix mar-b-1">
+        <ul class="no-bullets no-margin no-padding right">
+          <% if !logged_in %>
+            <li class="pipe-separate t-light-green center"> <a href="/users/new">register</a></li>
+            <li class="pipe-separate t-light-green center"> <a href="/sessions/login">login</a></li>
+            <li class="pipe-separate t-light-green center"> <a href="/">home</a></li>
+          <% else %>
+            <li class="pipe-separate t-light-green center"> <a href="/users/<%= current_user.id %>/show"><%= current_user.username %></a></li>
+            <li class="pipe-separate t-light-green center">
+            <form action='/sessions/logout' method='POST'>
+              <input type='hidden' name ='_method' value="delete">
+              <input type='submit' value='logout' class="no-border no-outline no-bg c-green hover-underline">
+            </form>
+            </li>
+            <li class="pipe-separate t-light-green center"> <a href="/">home</a></li>
+          <% end %>
+        </ul>
+      </nav>
+      <h1><a href="/">four-m overflow</a></h1>
   <%= yield %>
 </body>
 </html>

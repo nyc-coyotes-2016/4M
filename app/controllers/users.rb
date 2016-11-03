@@ -1,5 +1,5 @@
-get '/users/register' do
-  erb :'/users/register'
+get '/users/new' do
+  erb :'/users/new'
 end
 
 post '/users' do
@@ -11,15 +11,15 @@ post '/users' do
   else
     @errors = @user.errors.full_messages
     p @errors
-    erb :'/users/register'
+    erb :'/users/new'
   end
 end
 
-get '/login' do
-  erb :'/login'
+get '/sessions/login' do
+  erb :'/sessions/login'
 end
 
-post '/login' do
+post '/sessions/login' do
   @user = User.find_by(username: params[:username])
   p @user
 
@@ -28,6 +28,15 @@ post '/login' do
     redirect '/'
   else
     @errors = ["Your username and/or password were not found"]
-    erb :'/login'
+    erb :'/sessions/login'
   end
+
+end
+delete '/sessions/logout' do
+  session.clear
+  redirect '/'
+end
+
+get '/users/:id/show' do
+  erb :'/users/show'
 end
