@@ -26,7 +26,7 @@ post '/login' do
     session[:user_id] = @user.id
     redirect '/'
   else
-    @error = ["Your username and/or password were not found"]
+    @errors = ["Your username and/or password were not found"]
     erb :'/login'
   end
 end
