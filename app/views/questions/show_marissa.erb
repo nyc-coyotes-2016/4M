@@ -1,0 +1,55 @@
+<div class='container'>
+  <div class="question-header"><%= @question.title %></div>
+
+  <section class='question-section'>
+    <aside class="vote-arrow-container">
+      <div class="arrow-up"</div>
+        <span class="vote-count-digit"><%= @question.votes.count %></span>
+      <div class="arrow-down"</div>
+    </aside>
+    <div class="question-body"><%= @question.body %></div>
+  </section>
+
+  <section class='comment-section'>
+    <ul>
+      <% @question.comments.each do |comment| %>
+      <hr>
+      <li> <%= comment.body %> </li>
+        <% end %>
+      <hr>
+      <form class="comment" action="index.html" method="post">
+        <input type="text" name="new_comment" placeholder="Add comment...">
+        <input type="submit" value="Post!" class="submit_question_comment">
+      </form>
+    </ul>
+  </section>
+
+  <section class='answer-section'>
+
+      <% @question.answers.each do |answer| %>
+        <div class='container'>
+
+          <%= answer.body %>
+          <ul>
+            <hr>
+            <% answer.comments.each do |comment| %>
+            <li class="comment"> <%= comment.body %> </li>
+            <hr>
+            <% end %>
+
+            <form class="comment" action="index.html" method="post">
+              <input type="text" name="new_comment" placeholder="Add comment...">
+              <input type="submit" value="Post!" class="submit_question_comment">
+            </form>
+
+          </ul>
+
+        </div>
+        <% end %>
+    </section>
+
+  <form class="answer" action="index.html" method="post">
+    <input type="text" name="new_answer" placeholder="Add answer...">
+    <input type="submit" value="Post!" class="submit_question_answer">
+  </form>
+</div>
