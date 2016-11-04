@@ -1,0 +1,64 @@
+<div class='container'>
+  <div class="question-title"><%= @question.title %></div>
+  <div class="votes">
+    <span class="vote-count"><%= @question.votes.count %></span>
+    <div class="vote-count-subtitle">votes</div>
+  </div>
+  <div class='question-container'>
+    <div class="answers">
+      <span class="answer-count"><%= @question.answers.count %></span>
+      <div class="answer-count-subtitle">answers</div>
+    </div>
+  </div>
+  <div class='question-container'>
+    <div class="question-body"><%= @question.body %></div>
+  </div>
+
+  <div class='comment-container'>
+    <ul>
+      <% @question.comments.each do |comment| %>
+      <hr>
+      <li> <%= comment.body %> </li>
+      <% end %>
+      <hr>
+      <form class="" action="index.html" method="post">
+      <input type="text" name="new_comment" placeholder="Add comment...">
+      <input type="submit" value="Post!" class="submit_question_comment">
+      </form>
+    </ul>
+
+  </div>
+</div>
+
+<div class='answer-container'>
+
+    <% @question.answers.each do |answer| %>
+      <div class='container'>
+
+        <%= answer.body %>
+        <ul>
+          <hr>
+        <% answer.comments.each do |comment| %>
+          <li> <%= comment.body %> </li>
+          <hr>
+        <% end %>
+
+          <form class="" action="index.html" method="post">
+          <input type="text" name="new_comment" placeholder="Add comment...">
+          <input type="submit" value="Post!" class="submit_question_comment">
+          </form>
+        </ul>
+
+      </div>
+    <% end %>
+
+<div class='container'>
+  <form class="" action="index.html" method="post">
+    <input type="text" name="new_answer" placeholder="Add answer...">
+    <input type="submit" value="Post!" class="submit_question_answer">
+  </form>
+</div>
+
+</div>
+
+</div>
