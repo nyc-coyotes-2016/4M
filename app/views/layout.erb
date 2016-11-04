@@ -18,7 +18,7 @@
   <title></title>
 </head>
 <body>
-  <nav class="clearfix mar-b-1">
+  <nav>
       <% if !logged_in %>
         <a class="nav-font" href="/users/new">register</a>
         <a class="nav-font" href="/sessions/login">login</a>
@@ -27,7 +27,7 @@
 
         <form action='/sessions/logout' method='POST'>
           <input type='hidden' name ='_method' value="delete">
-          <input type='submit' value='logout' class="no-border no-outline no-bg c-green hover-underline">
+          <input type='submit' value='logout' class="button logout">
         </form>
       <% end %>
   </nav>
