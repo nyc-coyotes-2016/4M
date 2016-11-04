@@ -11,7 +11,7 @@ $(document).ready(function() {
   }).done(function(response){
     //var comment = " ";
     // debugger;
-    $('.comment-list').prepend("<li>" + response.body + "</li><hr>");
+    $('.comment-list').append("<li>" + response.body + "</li><hr>");
   });
 });
 });

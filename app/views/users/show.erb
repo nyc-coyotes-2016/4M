@@ -3,11 +3,11 @@
   <title>Account Page</title>
 </head>
 <body>
-  <h1>Welcome! <%= current_user.username %></h1>
+  <h1>Welcome, <%= current_user.username %>!</h1>
   <div class="container">
     <div class="questions-container">
-      <% if current_user.questions.length > 0 %>
       <h3>Your Questions</h3>
+      <% if current_user.questions.length > 0 %>
         <% current_user.questions.each do |question| %>
           <a href="/questions/<%=question.id%>"><%= question.title %></a>
           <div class="votes">
@@ -19,14 +19,17 @@
           <div class="answer-count-subtitle">answers</div>
           </div>
         <% end %>
+      <% else %>
+        <p>You have asked 0 questions.</p>
       <% end %>
+
     </div>
   </div>
 
   <div class="container">
     <div class="answer-container">
-    <% if current_user.answers.length > 0 %>
       <h3>Your Answers</h3>
+    <% if current_user.answers.length > 0 %>
         <% current_user.answers.each do |answer| %>
         <% question = Question.find_by(id: answer.question_id) %>
         <a href="/questions/<%= answer.question_id %>"><%= question.title %></a>
@@ -35,6 +38,8 @@
           <div class="vote-count-subtitle">votes</div>
           </div>
         <% end %>
+     <% else %>
+          <p>You have ansewred 0 questions.</p>
       <% end %>
     </div>
 
