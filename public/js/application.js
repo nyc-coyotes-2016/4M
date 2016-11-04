@@ -1,19 +1,17 @@
 
 $(document).ready(function() {
-  $('.question-section').on('submit','form', function(event){
+  $(document).on('submit','.comment', function(event){
     event.preventDefault();
-    alert('gj miles')
-    debugger;
-    var route = $(this).attr('action')
-
-    $.ajax({
-      url: route
-      method: 'post'
-      data: $(this).find'(name').serialize()
-    }).done(function(response)){
-    $('.comment-selection').append(response)
-  }
-  })
-
-
+    var route = $(this).attr('action');
+    var fieldData = $(this).serialize();
+  $.ajax({
+    url: route,
+    method: 'post',
+    data: fieldData
+  }).done(function(response){
+    //var comment = " ";
+    // debugger;
+    $('.comment-list').prepend("<li>" + response.body + "</li><hr>");
+  });
+});
 });
