@@ -1,16 +1,16 @@
 <div class='container'>
-  <div class="question-title"><%= @question.title %></div>
+  <div class="question-header"><%= @question.title %></div>
   <div class="votes">
     <span class="vote-count"><%= @question.votes.count %></span>
     <div class="vote-count-subtitle">votes</div>
   </div>
-  <div class='question-container'>
+  <div class='yellow-container'>
     <div class="answers">
       <span class="answer-count"><%= @question.answers.count %></span>
       <div class="answer-count-subtitle">answers</div>
     </div>
   </div>
-  <div class='question-container'>
+  <div class='yellow-container'>
     <div class="question-body"><%= @question.body %></div>
   </div>
 
