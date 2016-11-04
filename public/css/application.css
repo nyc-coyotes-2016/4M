@@ -34,11 +34,17 @@ h2 {
   margin-left: 10px;
 }
 
-.question-container {
+.container {
+  margin-left: 25px;
+  height: 100%;
+}
+
+.yellow-container {
+  position: relative;
+  height: 110px;
   margin-left: 10px;
-  width: 80%;
+  max-width: 60%;
   padding: 12px;
-  width: 600px;
   padding: 5px 5px 20px 20px;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -47,8 +53,54 @@ h2 {
   background-color: #fefbe6;
 }
 
+.question-section {
+  position: relative;
+  height: 110px;
+  margin-left: 10px;
+  max-width: 60%;
+  padding: 12px;
+  padding: 5px 5px 20px 20px;
+  border-top: 1px solid;
+  border-top-color: #dee0e2;
+}
+
+
+li {
+  list-style-type: none;
+}
+
 div.question-title {
+  padding-top: 1px;
+  margin-left: 15%;
   font-size: 1.05em;
+}
+
+div.question-header {
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+div.question-body {
+  width: 90%;
+  margin-left: 50px;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-bottom: 20px solid #8f959e;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid #8f959e;
 }
 
 a.button {
@@ -64,20 +116,74 @@ a.button {
   font-size: 14px;
 }
 
+.button {
+  border: none;
+  color: white;
+  background-color: #8f959e;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 40%;
+  font-size: 14px;
+}
+
+.button:hover {
+  background-color: #e66e08;
+}
+
 a.button:hover {
   background-color: #e66e08;
 }
 
 a.nav-font {
   color: white;
+  padding-left: 12px;
+  font-size: 17px;
+
+}
+
+div.vote-arrow-container {
+  position: absolute;
+  left: 0px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid black;
+  height: 90px;
+  width: 90px;
+}
+
+span.vote-count {
+  color: gray;
+  padding-left: 11px;
+}
+
+span.vote-count-digit {
+  color: #585f69;
+  font-size: 20px;
+}
+
+span.answer-count {
+  color: gray;
+  font-size: 1em;
 }
 
 div.answers {
-  border: 1px solid black;
-  display: block;
-  padding-right: 10px;
-  float: left;
+  position: absolute;
+  left: 0px;
+  padding: 5px;
+  text-align: center;
+  color: #585f69;
 }
+
+div.votes {
+  position: absolute;
+  left: 80px;
+  padding: 5px;
+  text-align: center;
+  color: #585f69;
+}
+
 
 th {
   text-align: left;
@@ -89,6 +195,7 @@ nav {
   background-color: #222323;
   list-style-type: none;
   align-content: space-around;
+  height: 35px;
 }
 
 body {

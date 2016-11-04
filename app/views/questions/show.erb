@@ -1,71 +1,61 @@
 <div class='container'>
-  <div class="question-title"><%= @question.title %></div>
-  <div class="votes">
-    <span class="vote-count"><%= @question.votes.count %></span>
-    <div class="vote-count-subtitle">votes</div>
-  </div>
-  <div class='question-container'>
-    <div class="answers">
-      <span class="answer-count"><%= @question.answers.count %></span>
-      <div class="answer-count-subtitle">answers</div>
-    </div>
-  </div>
-  <div class='question-container'>
-    <div class="question-body"><%= @question.body %></div>
-  </div>
+  <div class="question-header"><%= @question.title %></div>
 
-  <div class='comment-container'>
+  <section class='question-section'>
+    <aside class="vote-arrow-container">
+      <div class="arrow-up"</div>
+        <span class="vote-count-digit"><%= @question.votes.count %></span>
+      <div class="arrow-down"</div>
+    </aside>
+    <div class="question-body"><%= @question.body %></div>
+  </section>
+
+  <section class='comment-section'>
     <ul>
       <% @question.comments.each do |comment| %>
       <hr>
       <li> <%= comment.body %> </li>
-      <% end %>
+        <% end %>
       <hr>
-      <form class="" action="/comments" method="post">
-      <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
-      <input type="hidden" name="comment[commentable_id]" type="text" value=<%= @question.id %>>
-      <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Question" %>>
-      <input type="text" name="comment[body]" placeholder="Add comment...">
-      <input type="submit" value="Post!" class="submit_question_comment">
+      <form class="comment" action="/comments" method="post">
+        <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
+        <input type="hidden" name="comment[commentable_id]" type="text" value=<%= @question.id %>>
+        <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Question" %>>
+        <input type="text" name="comment[body]" placeholder="Add comment...">
+        <input type="submit" value="Post!" class="submit_question_comment">
       </form>
     </ul>
-  </div>
-</div>
+  </section>
 
-<div class='answer-container'>
+  <section class='answer-section'>
 
-    <% @question.answers.each do |answer| %>
-      <div class='container'>
+      <% @question.answers.each do |answer| %>
+        <div class='container'>
 
-        <%= answer.body %>
-        <ul>
-          <hr>
-        <% answer.comments.each do |comment| %>
-          <li> <%= comment.body %> </li>
-          <hr>
+          <%= answer.body %>
+          <ul>
+            <hr>
+            <% answer.comments.each do |comment| %>
+            <li class="comment"> <%= comment.body %> </li>
+            <hr>
+            <% end %>
+
+            <form class="comment" action="/comments" method="post">
+              <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
+              <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
+              <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
+              <input type="text" name="comment[body]" placeholder="Add comment...">
+              <input type="submit" value="Post!" class="submit_answer_comment">
+            </form>
+          </ul>
+        </div>
         <% end %>
+    </section>
 
-          <form class="" action="/comments" method="post">
-          <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
-          <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
-          <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
-          <input type="text" name="comment[body]" placeholder="Add comment...">
-          <input type="submit" value="Post!" class="submit_answer_comment">
-          </form>
-        </ul>
-
-      </div>
-    <% end %>
-
-<div class='container'>
-  <form class="" action="/answers" method="post">
+  <form class="answer" action="/answers" method="post">
     <input type="hidden" name="answer[user_id]" type="text" value=<%= current_user.id %>>
     <input type="hidden" name="answer[question_id]" type="text" value=<%= @question.id %>>
     <input type="text" name="answer[body]" placeholder="Add comment...">
     <input type="submit" value="Post!" class="new_answer">
   </form>
-</div>
-
-</div>
-
 </div>
