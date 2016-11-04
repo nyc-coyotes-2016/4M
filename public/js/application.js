@@ -1,7 +1,19 @@
-$(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+$(document).ready(function() {
+  $('.question-section').on('submit','form', function(event){
+    event.preventDefault();
+    alert('gj miles')
+    debugger;
+    var route = $(this).attr('action')
+
+    $.ajax({
+      url: route
+      method: 'post'
+      data: $(this).find'(name').serialize()
+    }).done(function(response)){
+    $('.comment-selection').append(response)
+  }
+  })
+
+
 });

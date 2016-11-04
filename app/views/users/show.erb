@@ -3,38 +3,38 @@
   <title>Account Page</title>
 </head>
 <body>
-  <h1><%= current_user.username %></h1>
+  <h1>Welcome! <%= current_user.username %></h1>
   <div class="container">
     <div class="questions-container">
+
       <h3>Your Questions</h3>
-      <% current_user.questions.each do |question| %>
-        <a href="/questions/<%=question.id%>"><%= question.title %></a>
-        <div class="votes">
-          <span class="vote-count"><%= question.votes.count %></span>
-          <div class="vote-count-subtitle">votes</div>
-        </div>
-        <div class="answers">
-          <span class="answer-count"><%= question.answers.count %></span>
+        <% current_user.questions.each do |question| %>
+          <a href="/questions/<%=question.id%>"><%= question.title %></a>
+          <div class="votes">
+            <span class="vote-count"><%= question.votes.count %></span>
+            <div class="vote-count-subtitle">votes</div>
+          </div>
+          <div class="answers">
+            <span class="answer-count"><%= question.answers.count %></span>
           <div class="answer-count-subtitle">answers</div>
-        </div>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+    </div>
   </div>
 
   <div class="container">
     <div class="answer-container">
-      <h3>Your Answers</h3>
+    <h3>Your Answers</h3>
       <% current_user.answers.each do |answer| %>
-        binding.pry
-        <% question = Question.find_by(id: answer.question_id) %>
-        <a href="/questions/<%= answer.question_id %>"><%= question.title %></a>
+      <% question = Question.find_by(id: answer.question_id) %>
+      <a href="/questions/<%= answer.question_id %>"><%= question.title %></a>
         <div class="votes">
           <span class="vote-count"><%= answer.votes.count %></span>
-          <div class="vote-count-subtitle">votes</div>
-        </div>
-
+        <div class="vote-count-subtitle">votes</div>
         </div>
       <% end %>
+    </div>
+
   </div>
 </body>
 </html>
