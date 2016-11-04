@@ -4,7 +4,7 @@
 <h2>Questions</h2>
 
 <% @questions.each do |question| %>
-  <div class='question-container'>
+  <div class='yellow-container'>
       <div class="question-title"><a href="/questions/<%= question.id%>"><%= question.title %></a>
         <div class="votes">
           <span class="vote-count"><%= question.votes.count %></span>

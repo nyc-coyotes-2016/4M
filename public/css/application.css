@@ -34,7 +34,7 @@ h2 {
   margin-left: 10px;
 }
 
-.question-container {
+.yellow-container {
   position: relative;
   height: 110px;
   margin-left: 10px;
@@ -46,6 +46,11 @@ h2 {
   border-top-color: #dee0e2;
   border-bottom-color: #dee0e2;
   background-color: #fefbe6;
+}
+
+.container {
+  position: relative;
+  margin-left: 25px;
 }
 
 div.question-title {
@@ -67,12 +72,31 @@ a.button {
   font-size: 14px;
 }
 
+.button {
+  border: none;
+  color: white;
+  background-color: #8f959e;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 40%;
+  font-size: 14px;
+}
+
+.button:hover {
+  background-color: #e66e08;
+}
+
 a.button:hover {
   background-color: #e66e08;
 }
 
 a.nav-font {
   color: white;
+  padding-left: 12px;
+  font-size: 17px;
+
 }
 
 span.vote-count {
@@ -112,6 +136,7 @@ nav {
   background-color: #222323;
   list-style-type: none;
   align-content: space-around;
+  height: 35px;
 }
 
 body {
