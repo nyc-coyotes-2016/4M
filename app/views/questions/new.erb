@@ -11,7 +11,7 @@
     <input id="question_body_input" name="question[body]" type="text" value="<%= @question.try(:body) %>">
     <br>
 
-    <input type="hidden" name="question[user_id]" type="text" value="<%= current_user.id %>">
+    <input type="hidden" name="question[user_id]" type="text" value=<%= current_user.id %>>
     <br>
 
     <input type="submit" value="Create My Question" class="button">
