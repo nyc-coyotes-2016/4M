@@ -12,7 +12,7 @@ get '/questions/:id' do
 end
 
 post '/questions' do
-  new_question = Question.new(params[:Question])
+  new_question = Question.new(params[:question])
   if new_question.valid?
     new_question.save
     redirect '/'
