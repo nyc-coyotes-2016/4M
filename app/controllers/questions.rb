@@ -4,7 +4,11 @@ get '/questions' do
 end
 
 get '/questions/new' do
-  erb :'/questions/new'
+  if logged_in
+    erb :'/questions/new'
+  else
+    redirect '/sessions/login'
+  end
 end
 
 get '/questions/:id' do
