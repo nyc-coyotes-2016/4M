@@ -73,8 +73,10 @@ a.nav-font {
 }
 
 div.answers {
-  border: 1px;
+  border: 1px solid black;
   display: block;
+  padding-right: 10px;
+  float: left;
 }
 
 th {
