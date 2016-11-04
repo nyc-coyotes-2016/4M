@@ -1,14 +1,10 @@
-<div class="container">
-  <a id="question-button" href="/questions/new">Ask Question</a>
-</header>
+<a class="button" href="/questions/new">Ask Question</a>
 
 
-<div class='question-container'>
 <h2>Questions</h2>
 
-<div id="question-list">
-  <% @questions.each do |question| %>
-
+<% @questions.each do |question| %>
+  <div class='question-container'>
       <div class="question-title"><a href="/questions/<%= question.id%>"><%= question.title %></a>
         <div class="votes">
           <span class="vote-count"><%= question.votes.count %></span>
@@ -20,9 +16,7 @@
         </div>
         </div>
       </div>
-
-  <% end %>
-</div>
-</div>
+    </div>
+<% end %>
 
 </div>

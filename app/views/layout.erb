@@ -19,24 +19,19 @@
 </head>
 <body>
   <nav class="clearfix mar-b-1">
-        <ul class="no-bullets no-margin no-padding right">
-          <% if !logged_in %>
-            <li class="pipe-separate t-light-green center"> <a href="/users/new">register</a></li>
-            <li class="pipe-separate t-light-green center"> <a href="/sessions/login">login</a></li>
-            <li class="pipe-separate t-light-green center"> <a href="/">home</a></li>
-          <% else %>
-            <li class="pipe-separate t-light-green center"> <a href="/users/<%= current_user.id %>/show"><%= current_user.username %></a></li>
-            <li class="pipe-separate t-light-green center">
-            <form action='/sessions/logout' method='POST'>
-              <input type='hidden' name ='_method' value="delete">
-              <input type='submit' value='logout' class="no-border no-outline no-bg c-green hover-underline">
-            </form>
-            </li>
-            <li class="pipe-separate t-light-green center"> <a href="/">home</a></li>
-          <% end %>
-        </ul>
-      </nav>
-      <h1><a href="/">four-m overflow</a></h1>
+      <% if !logged_in %>
+        <a class="nav-font" href="/users/new">register</a>
+        <a class="nav-font" href="/sessions/login">login</a>
+      <% else %>
+        <a class="nav-font" href="/users/<%= current_user.id %>/show"><%= current_user.username %></a>
+
+        <form action='/sessions/logout' method='POST'>
+          <input type='hidden' name ='_method' value="delete">
+          <input type='submit' value='logout' class="no-border no-outline no-bg c-green hover-underline">
+        </form>
+      <% end %>
+  </nav>
+      <h1><a class="overflow-header" href="/"><img src="../images/fourm_overflow.png"></a></h1>
   <%= yield %>
 </body>
 </html>

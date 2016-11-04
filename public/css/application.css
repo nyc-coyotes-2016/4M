@@ -1,9 +1,96 @@
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+/* *       - https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors
+/* :after  - https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter*/
+/* :before - https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Abefore */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
+
+/* element styling */
+html {
+  height: 100%;
+  line-height: 1.4;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #005999;
+}
+
+a:hover {
+  color: #3af;
+}
+
+h1 {
+  margin-left: 25px;
+  display: block;
+  color : #242729;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.question-container {
+  margin-left: 10px;
+  width: 80%;
+  padding: 12px;
+  width: 600px;
+  padding: 5px 5px 20px 20px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-top-color: #dee0e2;
+  border-bottom-color: #dee0e2;
+  background-color: #fefbe6;
+}
+
+div.question-title {
+  font-size: 1.05em;
+}
+
+a.button {
+  border: none;
+  color: white;
+  background-color: #8f959e;
+  float: right;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 40%;
+  font-size: 14px;
+}
+
+a.button:hover {
+  background-color: #e66e08;
+}
+
+a.nav-font {
+  color: white;
+}
+
+div.answers {
+  border: 1px solid black;
+  display: block;
+  padding-right: 10px;
+  float: left;
+}
+
 th {
   text-align: left;
+  margin-left: 20%;
+}
+
+nav {
+  color: white;
+  background-color: #222323;
+  list-style-type: none;
+  align-content: space-around;
+}
+
+body {
+font-family: Arial,"Helvetica Neue", Helvetica , sans-serif;
 }
