@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< HEAD
   <h1>Welcome to User creator!</h1>
 
    <form method="post" action="/questions">
@@ -18,6 +19,23 @@
     <br>
 
     <input type="submit" value="Yo! my account!" class="button">
+=======
+  <h1>Please ask a new question</h1>
+
+   <form method="post" action="/questions">
+    <label for="question_input">Title:</label>
+
+    <input id="question_name_input" name="question[title]" type="text" value="<%= @question.try(:title) %>">
+    <br>
+    <label for="question_body_input">Body:</label>
+    <input id="question_body_input" name="question[body]" type="text" value="<%= @question.try(:body) %>">
+    <br>
+
+    <input type="hidden" name="question[user_id]" type="text" value="<%= current_user.id %>">
+    <br>
+
+    <input type="submit" value="Create My Question" class="button">
+>>>>>>> make new question form and account page
   </form>
   <br>
 <a href="/">Back to homepage</a>

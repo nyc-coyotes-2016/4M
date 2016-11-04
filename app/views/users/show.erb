@@ -20,5 +20,22 @@
         </div>
       <% end %>
   </div>
+<<<<<<< HEAD
+=======
+  <div class="container">
+    <div class="answer-container">
+      <h3>Your Answers</h3>
+
+      <% current_user.answers.each do |answer| %>
+        <a href="/questions/<%= answer.question_id %>"><%= question.answers%></a>
+        <div class="votes">
+          <span class="vote-count"><%= answer.votes.count %></span>
+          <div class="vote-count-subtitle">votes</div>
+        </div>
+
+        </div>
+      <% end %>
+  </div>
+>>>>>>> make new question form and account page
 </body>
 </html>
