@@ -1,4 +1,14 @@
+
+<% if @errors %>
+<ul>
+  <% @errors.each do |error| %>
+    <li> <%= error %> </li>
+  <% end %>
+</ul>
+<% end%>
+
 <div class='container'>
+
   <div class="question-header"><%= @question.title %></div>
 
   <section class='question-section'>
@@ -19,6 +29,7 @@
       <hr>
       <% if logged_in %>
         <form class="comment" action="/comments" method="post">
+          <input type="hidden" name="question_id" type="text" value=<%= @question.id %>>
           <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
           <input type="hidden" name="comment[commentable_id]" type="text" value=<%= @question.id %>>
           <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Question" %>>
@@ -43,6 +54,7 @@
             <% end %>
             <% if logged_in %>
               <form class="comment" action="/comments" method="post">
+                <input type="hidden" name="question_id" type="text" value=<%= @question.id %>>
                 <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
                 <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
                 <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
@@ -54,12 +66,17 @@
         </div>
         <% end %>
     </section>
-  <% if logged_in %>
     <form class="answer" action="/answers" method="post">
-      <input type="hidden" name="answer[user_id]" type="text" value=<%= current_user.id %>>
+      <input type="hidden" name="answer[user_id]" type="text" value=
+
+      <% if logged_in %>
+        <%= current_user.id %>>
+      <% else %>
+        <%= "" %>
+      <% end %>
+
       <input type="hidden" name="answer[question_id]" type="text" value=<%= @question.id %>>
       <input type="text" name="answer[body]" placeholder="Add comment...">
       <input type="submit" value="Post!" class="new_answer">
     </form>
-  <% end %>
 </div>

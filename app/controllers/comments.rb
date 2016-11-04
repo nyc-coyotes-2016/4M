@@ -1,12 +1,11 @@
 post '/comments' do
-  if logged_in
-      @new_comment = Comment.new(params[:comment])
-    end
+  @new_comment = Comment.new(params[:comment])
 
   if @new_comment.valid?
     @new_comment.save
-    redirect '/'
+    redirect "/questions/#{params[:question_id]}"
   else
-    erb ':/comments'
+    @errors = @new_comment.errors.full_messages
+    redirect "/questions/#{params[:question_id]}"
   end
 end
