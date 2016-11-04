@@ -1,24 +1,18 @@
 <div class="container">
-  <h1>Welcome to User creator!</h1>
+
+  <h1>Please ask a new question</h1>
 
    <form method="post" action="/questions">
-    <label for="user_name_input">name:</label>
+    <label for="question_input">Title:</label>
 
-    <input id="user_name_input" name="user[first_name]" type="text" value="<%= @User.try(:first_name) %>">
+    <input id="question_name_input" name="question[title]" type="text" value="<%= @question.try(:title) %>">
     <br>
-    <label for="user_name_input">last name:</label>
-    <input id="user_name_input" name="user[last_name]" type="text" value="<%= @User.try(:last_name) %>">
-    <br>
-
-    <label for="user_email_input">email:</label>
-    <input id="user_email_input" name="user[email]" type="text" value="<%= @User.try(:email) %>">
-    <br>
-    <label for="user_new_pass">password:</label>
-    <input id="user_new_pass" name="user[password]" type="text" value="<%= @User.try(:password) %>">
+    <label for="question_body_input">Body:</label>
+    <input id="question_body_input" name="question[body]" type="text" value="<%= @question.try(:body) %>">
     <br>
 
-    <input type="submit" value="Yo! my account!" class="button">
-  </form>
-  <br>
-<a href="/">Back to homepage</a>
+    <input type="hidden" name="question[user_id]" type="text" value=<%= current_user.id %>>
+    <br>
+
+    <input type="submit" value="Create My Question" class="button">
 </div>
