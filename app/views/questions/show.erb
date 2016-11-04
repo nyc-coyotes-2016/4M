@@ -17,13 +17,15 @@
       <li> <%= comment.body %> </li>
         <% end %>
       <hr>
-      <form class="comment" action="/comments" method="post">
-        <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
-        <input type="hidden" name="comment[commentable_id]" type="text" value=<%= @question.id %>>
-        <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Question" %>>
-        <input type="text" name="comment[body]" placeholder="Add comment...">
-        <input type="submit" value="Post!" class="submit_question_comment">
-      </form>
+      <% if logged_in %>
+        <form class="comment" action="/comments" method="post">
+          <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
+          <input type="hidden" name="comment[commentable_id]" type="text" value=<%= @question.id %>>
+          <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Question" %>>
+          <input type="text" name="comment[body]" placeholder="Add comment...">
+          <input type="submit" value="Post!" class="submit_question_comment">
+        </form>
+      <% end %>
     </ul>
   </section>
 
@@ -39,23 +41,25 @@
             <li class="comment"> <%= comment.body %> </li>
             <hr>
             <% end %>
-
-            <form class="comment" action="/comments" method="post">
-              <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
-              <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
-              <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
-              <input type="text" name="comment[body]" placeholder="Add comment...">
-              <input type="submit" value="Post!" class="submit_answer_comment">
-            </form>
+            <% if logged_in %>
+              <form class="comment" action="/comments" method="post">
+                <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
+                <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
+                <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
+                <input type="text" name="comment[body]" placeholder="Add comment...">
+                <input type="submit" value="Post!" class="submit_answer_comment">
+              </form>
+            <%end%>
           </ul>
         </div>
         <% end %>
     </section>
-
-  <form class="answer" action="/answers" method="post">
-    <input type="hidden" name="answer[user_id]" type="text" value=<%= current_user.id %>>
-    <input type="hidden" name="answer[question_id]" type="text" value=<%= @question.id %>>
-    <input type="text" name="answer[body]" placeholder="Add comment...">
-    <input type="submit" value="Post!" class="new_answer">
-  </form>
+  <% if logged_in %>
+    <form class="answer" action="/answers" method="post">
+      <input type="hidden" name="answer[user_id]" type="text" value=<%= current_user.id %>>
+      <input type="hidden" name="answer[question_id]" type="text" value=<%= @question.id %>>
+      <input type="text" name="answer[body]" placeholder="Add comment...">
+      <input type="submit" value="Post!" class="new_answer">
+    </form>
+  <% end %>
 </div>
