@@ -35,10 +35,11 @@ h2 {
 }
 
 .question-container {
+  position: relative;
+  height: 110px;
   margin-left: 10px;
-  width: 80%;
+  max-width: 65%;
   padding: 12px;
-  width: 600px;
   padding: 5px 5px 20px 20px;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -48,6 +49,8 @@ h2 {
 }
 
 div.question-title {
+  padding-top: 1px;
+  margin-left: 15%;
   font-size: 1.05em;
 }
 
@@ -72,12 +75,32 @@ a.nav-font {
   color: white;
 }
 
-div.answers {
-  border: 1px solid black;
-  display: block;
-  padding-right: 10px;
-  float: left;
+span.vote-count {
+  color: gray;
+  padding-left: 11px;
 }
+
+span.answer-count {
+  color: gray;
+  font-size: 1em;
+}
+
+div.answers {
+  position: absolute;
+  left: 0px;
+  padding: 5px;
+  text-align: center;
+  color: #585f69;
+}
+
+div.votes {
+  position: absolute;
+  left: 80px;
+  padding: 5px;
+  text-align: center;
+  color: #585f69;
+}
+
 
 th {
   text-align: left;
