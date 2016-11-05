@@ -5,7 +5,7 @@ post '/comments' do
     @new_comment.save
     if request.xhr?
       content_type :json
-       @new_comment.to_json
+      @new_comment.to_json
     else
       redirect "/questions/#{params[:question_id]}"
     end
