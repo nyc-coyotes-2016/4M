@@ -15,6 +15,7 @@ $(document).ready(function() {
   });
 });
   $(document).on('submit','.answer', function(event){
+    alert("here");
     event.preventDefault();
     var answerRoute = $(this).attr('action');
     var answerData = $(this).serialize();
