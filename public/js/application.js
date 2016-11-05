@@ -14,4 +14,17 @@ $(document).ready(function() {
     $('.comment-list').append("<li>" + response.body + "</li><hr>");
   });
 });
+  $(document).on('submit','.answer', function(event){
+    event.preventDefault();
+    var answerRoute = $(this).attr('action');
+    var answerData = $(this).serialize();
+  $.ajax({
+    url: answerRoute,
+    method: 'post',
+    data: answerData
+  }).done(function(response){
+        debugger;
+    $('.answer-section').append("<div class= container>"+response.body+"</div>");
+  });
+  });
 });
