@@ -8,7 +8,7 @@
     <input id="question_name_input" name="question[title]" type="text" value="<%= @question.try(:title) %>">
     <br>
     <label for="question_body_input">Body:</label>
-    <input id="question_body_input" name="question[body]" type="text" value="<%= @question.try(:body) %>">
+    <textarea id="question_body_input" rows="4" cols="50" name="question[body]" placeholder="Add answer..." value="<%= @question.try(:body) %>"></textarea>
     <br>
 
     <input type="hidden" name="question[user_id]" type="text" value=<%= current_user.id %>>
