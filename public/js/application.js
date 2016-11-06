@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
   $(document).on('submit','.comment', function(event){
     event.preventDefault();
@@ -12,6 +11,7 @@ $(document).ready(function() {
     $('.comment-list').prepend("<li>" + response.body + "</li><hr>");
   });
 });
+
   $(document).on('submit','.answer', function(event){
     event.preventDefault();
     var answerRoute = $(this).attr('action');
@@ -25,4 +25,18 @@ $(document).ready(function() {
     $('.answer-section').append("<div class= container>"+response.body+"</div>");
   });
   });
+
+  $(document).on('click', ".arrow-up", function(event){
+    alert(location);
+    var vote = $(this).serialize();
+    $.ajax({
+      url: "/votes/new",
+      method: "post",
+      data: vote
+    })
+    .done(function(response){
+      $("article#"+response["id"]).remove();
+    });
+  });
+
 });
