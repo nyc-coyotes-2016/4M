@@ -29,12 +29,13 @@ $(document).ready(function() {
   });
 
   $(document).on('click', ".arrow-up", function(event){
-    alert(location);
-    var vote = $(this).serialize();
+    var path = location.pathname;
+    var path_array = path.split("/");
+    var question_id = path_array[path_array.length - 1];
     $.ajax({
       url: "/votes/new",
       method: "post",
-      data: vote
+      data: {question_id: question_id}
     })
     .done(function(response){
       $("article#"+response["id"]).remove();
