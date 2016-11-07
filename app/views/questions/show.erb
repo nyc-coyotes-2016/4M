@@ -43,32 +43,39 @@
     </ul>
   </section>
 
-  <section class='answer-section'>
-
+  <h3><%= @question.answers.count %> Answers</h3>
       <% @question.answers.each do |answer| %>
-        <div class='container'>
-
-          <%= answer.body %>
-          <ul>
-            <hr>
-            <% answer.comments.each do |comment| %>
-            <li class="comment"> <%= comment.body %> </li>
-            <hr>
-            <% end %>
-            <% if logged_in %>
-              <form class="comment" action="/comments" method="post">
-                <input type="hidden" name="question_id" type="text" value=<%= @question.id %>>
-                <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
-                <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
-                <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
-                <input type="text" name="comment[body]" placeholder="Add comment...">
-                <input type="submit" value="Post!" class="submit_answer_comment button">
-              </form>
-            <%end%>
-          </ul>
+  <section class='answer-section'>
+        <div class="vote-cell">
+          <div class="horizontal-center"><div class="arrow-up"></div></div>
+            <div class="vote-count-digit"><%= answer.votes.count %></div>
+          <div class="horizontal-center"><div class="arrow-down"></div></div>
         </div>
-        <% end %>
-    </section>
+          <div class="answer-body">
+            <%= answer.body %>
+          </div>
+  </section>
+
+  <section class='comment-section'>
+    <ul>
+      <hr>
+      <% answer.comments.each do |comment| %>
+      <li class="comment"> <%= comment.body %> </li>
+      <hr>
+      <% end %>
+      <% if logged_in %>
+      <form class="comment" action="/comments" method="post">
+        <input type="hidden" name="question_id" type="text" value=<%= @question.id %>>
+        <input type="hidden" name="comment[user_id]" type="text" value=<%= current_user.id %>>
+        <input type="hidden" name="comment[commentable_id]" type="text" value=<%= answer.id %>>
+        <input type="hidden" name="comment[commentable_type]" type="text" value=<%= "Answer" %>>
+        <input type="text" name="comment[body]" placeholder="Add comment...">
+        <input type="submit" value="Post!" class="submit_answer_comment button">
+      </form>
+      <%end%>
+    </ul>
+<% end %>
+</section>
     <form class="answer" action="/answers" method="post">
       <input type="hidden" name="answer[user_id]" type="text" value=
 
