@@ -10,7 +10,7 @@ $(document).ready(function() {
   }).done(function(response){
     //var comment = " ";
     // debugger;
-    $('.comment-list').append("<li>" + response.body + "</li><hr>");
+    $('.comment-list').prepend("<li>" + response.body + "</li><hr>");
   });
 });
 
@@ -23,7 +23,6 @@ $(document).ready(function() {
     method: 'post',
     data: answerData
   }).done(function(response){
-        debugger;
     $('.answer-section').append("<div class= container>"+response.body+"</div>");
   });
   });
@@ -35,10 +34,11 @@ $(document).ready(function() {
     $.ajax({
       url: "/votes/new",
       method: "post",
-      data: {question_id: question_id}
+      data: {votable_id: question_id,
+             votable_type: "Question"}
     })
     .done(function(response){
-      $("article#"+response["id"]).remove();
+      $(".vote-count-digit").text();
     });
   });
 
