@@ -118,7 +118,7 @@ div.answer-body {
   border-right: 20px solid transparent;
 
   border-bottom: 20px solid #8f959e;
-
+  cursor: pointer;
 }
 
 .arrow-down {
@@ -127,8 +127,8 @@ div.answer-body {
   height: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-
   border-top: 20px solid #8f959e;
+  cursor: pointer;
 }
 
 a.button {
