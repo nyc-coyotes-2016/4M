@@ -25,9 +25,9 @@ h2 {
 }
 
 .container {
-  margin-left: 20%;
   height: 100%;
   width: 100%;
+  margin-left: 2%;
 }
 
 .yellow-container {
@@ -143,7 +143,6 @@ a.nav-font {
   padding-top: 3px;
   padding-left: 12px;
   font-size: 17px;
-  margin-left: 20%;
 }
 
 li {
