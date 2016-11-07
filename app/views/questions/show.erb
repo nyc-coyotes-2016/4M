@@ -44,11 +44,18 @@
   </section>
 
   <section class='answer-section'>
-
+      <h3><%= @question.answers.count %> Answers</h3><hr>
       <% @question.answers.each do |answer| %>
-        <div class='container'>
+        <div class="vote-cell">
+          <div class="horizontal-center"><div class="arrow-up"></div></div>
+            <div class="vote-count-digit"><%= answer.votes.count %></div>
+          <div class="horizontal-center"><div class="arrow-down"></div></div>
+        </div>
+          <div class="answer-body">
+            <%= answer.body %>
+          </div>
+          <section class='comment-section'>
 
-          <%= answer.body %>
           <ul>
             <hr>
             <% answer.comments.each do |comment| %>
@@ -66,7 +73,7 @@
               </form>
             <%end%>
           </ul>
-        </div>
+        </section>
         <% end %>
     </section>
     <form class="answer" action="/answers" method="post">
